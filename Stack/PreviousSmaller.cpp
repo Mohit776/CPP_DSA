@@ -28,8 +28,6 @@ void previousSmaller(vector<int>nums){
             cout<< val << endl;
     }
     
-    
-
 }
 
 int main()
