@@ -7,7 +7,11 @@ int main()
 {
     vector<int> arr = {6,8,0,1,3};
 
-    cout << arr[5];
+    string s= "mohitfff hg";
+
+  //  cout << arr[5];
+  cout << s.size();
+
 
     return 0;
 }
