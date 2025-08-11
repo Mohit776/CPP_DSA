@@ -38,6 +38,8 @@ public:
                 dq.pop_back();
             }
             dq.push_back(i);
+
+            
             
             
         }
