@@ -9,6 +9,15 @@ int main()
 
     string s= "mohitfff hg";
 
+    stack<int>s;
+
+    s.push_back(1);
+    s.push_back(2);
+    s.push_back(3);
+    s.push_back(4);
+    s.push_back(5);
+
+
   //  cout << arr[5];
   cout << s.size();
 
