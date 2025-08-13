@@ -1,26 +1,45 @@
 #include <iostream>
 #include <stack>
 #include <vector>
+#include <unordered_set>
 using namespace std;
 
 int main()
 {
-    vector<int> arr = {6,8,0,1,3};
+    vector<int> nums = {1, 7, 3, 6, 5, 6};
+    unordered_set<int> SSum;
+    unordered_set<int> LSum;
+    vector<int> ss;
 
-    string s= "mohitfff hg";
+    int a = 0;
 
-    stack<int>s;
+    for (int i = 0; i < nums.size(); i++)
+    {
+        a = a + nums[i];
 
-    s.push_back(1);
-    s.push_back(2);
-    s.push_back(3);
-    s.push_back(4);
-    s.push_back(5);
+        SSum.insert(a);
+        ss.push_back(a);
+    }
 
+    a = 0;
 
-  //  cout << arr[5];
-  cout << s.size();
+    for (int i = nums.size() - 1; i > 0; i--)
+    {
+        a = a + nums[i];
 
+        LSum.insert(a);
+    }
+
+    for (int i = 0; i < SSum.size(); i++)
+        cout << SSum[i]
+             << endl;
+
+    cout << "======================" << endl;
+    for (int i = 0; i < LSum.size(); i++)
+        cout << LSum[i]
+             << endl;
+
+    cout << "======================" << endl;
 
     return 0;
 }
