@@ -77,38 +77,60 @@ int height(Node *root)
 int count(Node *root)
 {
 
-if(root == NULL){
-    return 0;
-}
+    if (root == NULL)
+    {
+        return 0;
+    }
 
-int leftc =    count(root -> left);
-int rightc =count(root -> right);
+    int leftc = count(root->left);
+    int rightc = count(root->right);
 
-return leftc + rightc + 1;
-
+    return leftc + rightc + 1;
 }
 
 int sum(Node *root)
 {
 
-if(root == NULL){
-    return 0;
+    if (root == NULL)
+    {
+        return 0;
+    }
+
+    int leftc = sum(root->left);
+    int rightc = sum(root->right);
+
+    return leftc + rightc + root->data;
 }
 
-int leftc =    sum(root -> left);
-int rightc =   sum(root -> right);
+bool isSameTree(Node *p, Node *q)
+{
 
-return leftc + rightc + root -> data;
+    if (p == NULL || q == NULL  )
+    {
+        return p ==q;
+    }
 
+   bool isLeft = isSameTree(p->left, q->left);
+   bool isRight = isSameTree(p->right, q->right);
+
+    return isLeft && isRight && p->data == q-> data;
 }
 
 int main()
 {
 
-    vector<int> preorder = {1, 2, -1, -1, 3, 4, -1, -1, 5, -1, -1};
+   // vector<int> preorder = {1, 2, -1, -1, 3, 4, -1, -1, 5, -1, -1};
 
-    Node *root = BuildTree(preorder);
-    cout << sum(root) ;
+  //  Node *root = BuildTree(preorder);
+
+  vector<int> p = {1, 2, -1, -1, 3, -1, -1};
+vector<int> q = {1, 2, -1, -1, 3, -1, -1};
+
+
+    Node *pa = BuildTree(p);
+    Node *qa = BuildTree(q);
+
+    cout << "Answer :" << isSameTree(pa, qa);
 
     return 0;
 }
