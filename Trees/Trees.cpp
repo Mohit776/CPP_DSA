@@ -116,6 +116,27 @@ bool isSameTree(Node *p, Node *q)
     return isLeft && isRight && p->data == q->data;
 }
 
+int diameterOfBinaryTree(Node *root)
+{
+
+    if (root == NULL)
+    {
+        return 0;
+    }
+
+    int LD = diameterOfBinaryTree(root->left);
+    int RD = diameterOfBinaryTree(root->right);
+
+    int currD = height(root->left) + height(root->right);
+
+    return max(LD, max(RD, currD));
+}
+
+
+
+
+
+
 int main()
 {
     vector<int> preorder = {1, 2, -1, -1, 3, 4, -1, -1, 5, -1, -1};
