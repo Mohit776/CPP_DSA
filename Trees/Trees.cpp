@@ -1,6 +1,8 @@
 #include <iostream>
 #include <stack>
 #include <vector>
+#include <queue>
+#include <map>
 
 using namespace std;
 class Node
@@ -132,10 +134,43 @@ int diameterOfBinaryTree(Node *root)
     return max(LD, max(RD, currD));
 }
 
+void topView(Node *root)
+{
 
+    queue<pair<Node *, int>> q;
 
+    map<int, int> m;
+    q.push({root, 0});
 
+    while (q.size() > 0)
+    {
 
+        Node *curr = q.front().first;
+        int currHd = q.front().second;
+
+        q.pop();
+
+        if (m.find(currHd) == m.end())
+        {
+            m[currHd] = curr->data;
+        }
+
+        if (curr->left != NULL)
+        {
+            q.push({curr->left, currHd - 1});
+        }
+        if (curr->right != NULL)
+        {
+            q.push({curr->right, currHd + 1});
+        }
+    }
+    for (auto it : m)
+    {
+        cout << it.second << " ";
+    }
+
+    cout << endl;
+}
 
 int main()
 {
@@ -143,13 +178,7 @@ int main()
 
     Node *root = BuildTree(preorder);
 
-    vector<int> p = {1, 2, -1, -1, 3, -1, -1};
-    vector<int> q = {1, 2, -1, -1, 3, -1, -1};
-
-    Node *pa = BuildTree(p);
-    Node *qa = BuildTree(q);
-
-    cout << "Answer :" << isSameTree(pa, qa);
+    topView(root);
 
     return 0;
 }
