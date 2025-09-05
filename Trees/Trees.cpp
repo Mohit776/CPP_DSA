@@ -182,13 +182,51 @@ void kthLevel(Node *root, int k)
 
     if (k == 1)
     {
-        cout << root -> data << " ";
+        cout << root->data << " ";
         return;
     }
 
-    kthLevel(root->left, k-1);
-    kthLevel(root->right, k-1);
+    kthLevel(root->left, k - 1);
+    kthLevel(root->right, k - 1);
 }
+int search(vector<int> &inorder, int left, int right, int val)
+{
+    for (int i = left; i <= right; i++)
+    {
+        if (inorder[i] == val)
+        {
+            return i;
+        }
+    }
+    return -1;
+}
+
+Node *buildTreeHelper(vector<int> &preorder, vector<int> &inorder, int preIdx, int left, int right)
+{
+
+    if (left > right)
+    {
+        return NULL;
+    }
+    Node *root = new Node(preorder[preIdx]);
+    preIdx++;
+
+    int inIdx = search(inorder, left, right, preorder[preIdx]);
+    root->left = buildTreeHelper(preorder, inorder, preIdx, left, inIdx - 1);
+    root->right = buildTreeHelper(preorder, inorder, preIdx, inIdx + 1, right);
+    return root;
+}
+
+Node *buildTree(vector<int> &preorder, vector<int> &inorder, int preIdx)
+{
+    int preIdx = 0;
+
+    return buildTreeHelper(preorder, inorder, preIdx, 0, inorder.size() - 1);
+
+}
+
+
+
 
 int main()
 {
