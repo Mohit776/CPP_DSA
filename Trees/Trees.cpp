@@ -226,7 +226,29 @@ Node *buildTree(vector<int> &preorder, vector<int> &inorder, int preIdx)
 }
 
 
+int SumTree(Node* root){
 
+if (root == NULL)return 0;
+
+
+
+
+    int leftsum = SumTree(root -> left);
+    int Rightsum = SumTree(root -> right);
+
+    root -> data +=  leftsum + Rightsum ;
+
+    return root -> data;
+
+
+    
+
+}
+
+
+ vector<string> binaryTreePaths(TreeNode* root) {
+        
+    }
 
 int main()
 {
